@@ -1,0 +1,42 @@
+Prompt para Descripción del Proyecto de Sistema de Gestión de Gimnasio
+Título del Proyecto: Sistema Integral de Gestión de Gimnasio "FitHub"
+
+Descripción del Proyecto:
+Desarrollo de un sistema completo de gestión para gimnasios que integra administración de socios, control de entrenamientos, procesamiento de pagos y seguimiento del progreso físico. La solución permitirá a administradores, recepcionistas, entrenadores y socios interactuar con el sistema según sus roles y permisos, optimizando las operaciones diarias del gimnasio y mejorando la experiencia del usuario.
+
+Tecnologías Implementadas:
+
+Backend: Java con Spring Boot para API RESTful robusta y escalable
+
+Frontend Móvil: React Native para aplicación cross-platform nativa
+
+Base de Datos: PostgreSQL para gestión confiable y transaccional de datos
+
+Autenticación: JWT y Spring Security para gestión de roles y acceso seguro
+
+Módulos Principales:
+
+Módulo de Socios: Registro, gestión de perfiles, asignación de planes de membresía y control de asistencias
+
+Módulo de Entrenamiento: Creación de planes personalizados, programación de clases y seguimiento de progreso físico
+
+Módulo de Seguridad: Autenticación, autorización y gestión de roles de usuarios
+
+Características Clave:
+
+Gestión multi-rol (Administrador, Recepcionista, Entrenador, Socio)
+
+
+Control de asistencia y seguimiento de progreso físico
+
+Planes de entrenamiento personalizables
+
+Programación de clases grupales
+
+Dashboard analítico para administradores
+
+App móvil para socios con funciones de autogestión
+
+Valor Agregado:
+Solución integral que digitaliza las operaciones de gimnasios, mejora la retención de socios mediante seguimiento personalizado, y optimiza la administración mediante automatización de procesos clave.
+

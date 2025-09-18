@@ -1,0 +1,133 @@
+@startuml
+package "Modulo_Socios" as socios {
+  package "modelo" as socios_modelo {
+    [Socio]
+    [PlanMembresia]
+    [Asistencia]
+    [Progreso]
+  }
+  
+  package "controlador" as socios_controlador {
+    [SocioController]
+    [AsistenciaController]
+    [ProgresoController]
+  }
+  
+  package "servicio" as socios_servicio {
+    [SocioService]
+    [AsistenciaService]
+    [ProgresoService]
+  }
+  
+  package "repositorio" as socios_repositorio {
+    [SocioRepository]
+    [AsistenciaRepository]
+    [ProgresoRepository]
+  }
+}
+
+package "Modulo_Entrenamiento" as entrenamiento {
+  package "modelo" as entrenamiento_modelo {
+    [Clase]
+    [Entrenador]
+    [PlanEntrenamiento]
+    [Equipo]
+  }
+  
+  package "controlador" as entrenamiento_controlador {
+    [ClaseController]
+    [EntrenadorController]
+    [PlanEntrenamientoController]
+  }
+  
+  package "servicio" as entrenamiento_servicio {
+    [ClaseService]
+    [EntrenadorService]
+    [PlanEntrenamientoService]
+  }
+  
+  package "repositorio" as entrenamiento_repositorio {
+    [ClaseRepository]
+    [EntrenadorRepository]
+    [PlanEntrenamientoRepository]
+  }
+}
+
+package "Modulo_Pagos" as pagos {
+  package "modelo" as pagos_modelo {
+    [Pago]
+    [Factura]
+  }
+  
+  package "controlador" as pagos_controlador {
+    [PagoController]
+    [FacturaController]
+  }
+  
+  package "servicio" as pagos_servicio {
+    [PagoService]
+    [FacturaService]
+  }
+  
+  package "repositorio" as pagos_repositorio {
+    [PagoRepository]
+    [FacturaRepository]
+  }
+}
+
+package "Modulo_Seguridad" as seguridad {
+  package "modelo" as seguridad_modelo {
+    [Usuario]
+    [Rol]
+  }
+  
+  package "controlador" as seguridad_controlador {
+    [AuthController]
+    [UsuarioController]
+  }
+  
+  package "servicio" as seguridad_servicio {
+    [UsuarioService]
+    [JwtService]
+  }
+  
+  package "config" as seguridad_config {
+    [SecurityConfig]
+  }
+  
+  package "repositorio" as seguridad_repositorio {
+    [UsuarioRepository]
+    [RolRepository]
+  }
+}
+
+' ====== Dependencias entre módulos ======
+socios ..> seguridad
+entrenamiento ..> seguridad
+pagos ..> seguridad
+pagos ..> socios
+entrenamiento ..> socios
+
+' ====== Relaciones internas ======
+socios_controlador ..> socios_servicio
+socios_servicio ..> socios_repositorio
+socios_repositorio ..> socios_modelo
+
+entrenamiento_controlador ..> entrenamiento_servicio
+entrenamiento_servicio ..> entrenamiento_repositorio
+entrenamiento_repositorio ..> entrenamiento_modelo
+
+pagos_controlador ..> pagos_servicio
+pagos_servicio ..> pagos_repositorio
+pagos_repositorio ..> pagos_modelo
+
+seguridad_controlador ..> seguridad_servicio
+seguridad_servicio ..> seguridad_repositorio
+seguridad_repositorio ..> seguridad_modelo
+seguridad_servicio ..> seguridad_config
+
+' ====== Seguridad transversal en controladores ======
+socios_controlador ..> seguridad_config
+entrenamiento_controlador ..> seguridad_config
+pagos_controlador ..> seguridad_config
+@enduml

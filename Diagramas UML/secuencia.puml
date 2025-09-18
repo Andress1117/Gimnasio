@@ -1,0 +1,52 @@
+@startuml
+actor Recepcionista
+participant "Frontend" as UI
+participant "AuthController" as Auth
+participant "AuthMiddleware" as AuthMw
+participant "AsistenciaController" as AsistenciaC
+participant "AsistenciaService" as AsistenciaS
+participant "SocioService" as SocioS
+participant "Base de Datos" as DB
+
+Recepcionista -> UI : Inicia sesión
+UI -> Auth : POST /api/auth/login\n{username, password}
+Auth -> DB : buscarUsuarioPorCredenciales(username, password)
+DB --> Auth : datos usuario
+Auth --> UI : token JWT
+
+Recepcionista -> UI : Ingresa ID socio para registrar asistencia
+UI -> AuthMw : POST /api/asistencias\nAuthorization: Bearer {token}\n{idSocio}
+alt Token válido
+  AuthMw -> AsistenciaC : forward request
+  AsistenciaC -> AsistenciaS : registrarAsistencia(idSocio)
+else Token inválido o expirado
+  AuthMw --> UI : 401 Unauthorized\n{error: "Token inválido o expirado"}
+  UI --> Recepcionista : Mostrar error
+  return
+end
+
+AsistenciaS -> SocioS : verificarSocioActivo(idSocio)
+SocioS -> DB : buscarSocioConMembresia(idSocio)
+DB --> SocioS : datos socio y membresía
+
+alt Socio existe y membresía activa
+  SocioS --> AsistenciaS : socio válido
+  AsistenciaS -> DB : registrarAsistencia(idSocio, fechaHora)
+  DB --> AsistenciaS : asistencia registrada
+  AsistenciaS --> AsistenciaC : éxito
+  AsistenciaC --> UI : 201 Created\n{message: "Asistencia registrada"}
+  UI --> Recepcionista : Mostrar confirmación
+  
+else Socio no existe
+  SocioS --> AsistenciaS : error "Socio no encontrado"
+  AsistenciaS --> AsistenciaC : error
+  AsistenciaC --> UI : 404 Not Found\n{error: "Socio no encontrado"}
+  UI --> Recepcionista : Mostrar error
+
+else Membresía inactiva
+  SocioS --> AsistenciaS : error "Membresía inactiva"
+  AsistenciaS --> AsistenciaC : error
+  AsistenciaC --> UI : 400 Bad Request\n{error: "Membresía inactiva"}
+  UI --> Recepcionista : Mostrar error
+end
+@enduml

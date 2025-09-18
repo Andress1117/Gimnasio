@@ -1,0 +1,136 @@
+@startuml
+' ====== Clases principales ======
+class Usuario {
+  +idUsuario: Long
+  +nombre: String
+  +email: String
+  +password: String
+  +estaActivo: Boolean
+}
+
+class Rol {
+  +idRol: Long
+  +nombre: String
+  +descripcion: String
+}
+
+class Socio {
+  +idSocio: Long
+  +telefono: String
+  +fechaRegistro: Date
+  +fechaNacimiento: Date
+  +direccion: String
+}
+
+class PlanMembresia {
+  +idPlan: Long
+  +nombre: String
+  +precio: Double
+  +duracionMeses: Integer
+  +descripcion: String
+}
+
+class Pago {
+  +idPago: Long
+  +fecha: Date
+  +monto: Double
+  +estado: String
+  +metodoPago: String
+}
+
+class Asistencia {
+  +idAsistencia: Long
+  +fecha: Date
+  +horaEntrada: Time
+  +horaSalida: Time
+}
+
+class PlanEntrenamiento {
+  +idPlanEntrenamiento: Long
+  +nombre: String
+  +descripcion: String
+  +nivelDificultad: String
+  +duracionSemanas: Integer
+}
+
+class Progreso {
+  +idProgreso: Long
+  +fecha: Date
+  +peso: Double
+  +grasaCorporal: Double
+  +musculo: Double
+  +medidaCintura: Double
+}
+
+class Entrenador {
+  +idEntrenador: Long
+  +especialidad: String
+  +fechaContratacion: Date
+  +salario: Double
+}
+
+class Equipo {
+  +idEquipo: Long
+  +nombre: String
+  +estado: String
+  +marca: String
+  +fechaMantenimiento: Date
+}
+
+class Clase {
+  +idClase: Long
+  +nombre: String
+  +descripcion: String
+  +fechaHora: DateTime
+  +duracion: Integer
+  +capacidadMaxima: Integer
+}
+
+class Factura {
+  +idFactura: Long
+  +numeroFactura: String
+  +fechaEmision: Date
+  +fechaVencimiento: Date
+  +subtotal: Double
+  +iva: Double
+  +total: Double
+  +estado: String
+}
+
+' ====== Relaciones ======
+Usuario "*" -- "*" Rol 
+Socio --|> Usuario
+Entrenador --|> Usuario
+
+class Membresia {
+  +idMembresia: Long
+  +fechaInicio: Date
+  +fechaFin: Date
+  +estado: String
+}
+
+Socio "1" o-- "*" Membresia 
+Membresia "*" --> "1" PlanMembresia 
+Socio "1" *-- "*" Pago 
+Socio "1" *-- "*" Asistencia 
+Socio "1" *-- "*" Progreso 
+class InscripcionClase {
+  +idInscripcion: Long
+  +fechaInscripcion: Date
+  +estado: String
+}
+Socio "1" -- "*" InscripcionClase 
+Clase "1" -- "*" InscripcionClase 
+
+Entrenador "1" o-- "*" PlanEntrenamiento 
+Entrenador "1" o-- "*" Clase 
+
+Socio "1" o-- "*" PlanEntrenamiento 
+
+ 
+
+Pago "1" *-- "1" Factura 
+Pago "1" --> "1" Membresia 
+
+ 
+@enduml

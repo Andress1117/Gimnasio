@@ -1,0 +1,52 @@
+@startuml
+left to right direction
+actor Administrador
+actor Recepcionista
+actor Entrenador
+actor Socio
+
+rectangle "Sistema de Gestión de Gimnasio" {
+  (Autenticarse) as AU
+  (Gestionar usuarios) as GU
+  (Gestionar roles) as GR
+  (Registrar socio) as RS
+  (Asignar plan de membresía) as APM
+  (Registrar asistencia) as RA
+  (Crear plan de entrenamiento) as CP
+  (Consultar plan de entrenamiento) as CPE
+  (Registrar progreso físico) as RPF
+  (Registrar pago) as RP
+  (Generar factura) as GF
+  (Programar clase opcional) as PC
+  (Inscribir socio a clase) as ISC
+  (Consultar progreso) as CPV
+}
+
+Administrador --> AU
+Administrador --> GU
+Administrador --> GR
+Administrador --> PC
+Administrador --> GF
+
+Recepcionista --> AU
+Recepcionista --> RS
+Recepcionista --> APM
+Recepcionista --> RA
+Recepcionista --> RP
+Recepcionista --> ISC
+
+Entrenador --> AU
+Entrenador --> CP
+Entrenador --> RPF
+
+Socio --> AU
+Socio --> CPE
+Socio --> CPV
+
+' ====== include / extend ======
+RP ..> GF : <<include>>
+APM ..> RP : <<include>>
+RA ..> APM : <<extend>>
+ISC ..> APM : <<extend>>
+RPF ..> CP : <<extend>>
+@enduml
