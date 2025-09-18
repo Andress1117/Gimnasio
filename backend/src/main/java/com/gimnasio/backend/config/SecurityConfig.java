@@ -22,17 +22,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/api/users/**").permitAll()
-                .requestMatchers("/api/members/**").permitAll()
-                .requestMatchers("/api/trainers/**").permitAll()
-                .requestMatchers("/api/equipment/**").permitAll()
-                .requestMatchers("/api/attendance/**").permitAll()
-                .requestMatchers("/api/memberships/**").permitAll()
-                .requestMatchers("/api/payments/**").permitAll()
-                .requestMatchers("/api/workouts/**").permitAll()
-                .requestMatchers("/api/classes/**").permitAll()
-                .requestMatchers("/api/schedules/**").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
             )
             .httpBasic(httpBasic -> {});
         

@@ -2,7 +2,7 @@ package com.gimnasio.backend.controller;
 
 import com.gimnasio.backend.dto.MembershipDto;
 import com.gimnasio.backend.entity.Membership;
-import com.gimnasio.backend.repository.MembershipRepository;
+import com.gimnasio.backend.service.MembershipService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,35 +18,48 @@ import java.util.Optional;
 @CrossOrigin(origins = "*")
 public class MembershipController {
     
-    private final MembershipRepository membershipRepository;
+    private final MembershipService membershipService;
     
     @PostMapping
     public ResponseEntity<MembershipDto.Response> createMembership(@Valid @RequestBody MembershipDto.CreateRequest request) {
-        // Implementation would go here
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        try {
+            MembershipDto.Response response = membershipService.createMembership(request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
     
     @GetMapping
     public ResponseEntity<List<MembershipDto.Response>> getAllMemberships() {
-        // Implementation would go here
-        return ResponseEntity.ok().build();
+        List<MembershipDto.Response> memberships = membershipService.getAllMemberships();
+        return ResponseEntity.ok(memberships);
     }
     
     @GetMapping("/{id}")
     public ResponseEntity<MembershipDto.Response> getMembershipById(@PathVariable Long id) {
-        // Implementation would go here
-        return ResponseEntity.ok().build();
+        return membershipService.getMembershipById(id)
+                .map(membership -> ResponseEntity.ok(membership))
+                .orElse(ResponseEntity.notFound().build());
     }
     
     @PutMapping("/{id}")
     public ResponseEntity<MembershipDto.Response> updateMembership(@PathVariable Long id, @Valid @RequestBody MembershipDto.UpdateRequest request) {
-        // Implementation would go here
-        return ResponseEntity.ok().build();
+        try {
+            MembershipDto.Response response = membershipService.updateMembership(id, request);
+            return ResponseEntity.ok(response);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().build();
+        }
     }
     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMembership(@PathVariable Long id) {
-        // Implementation would go here
-        return ResponseEntity.noContent().build();
+        try {
+            membershipService.deleteMembership(id);
+            return ResponseEntity.noContent().build();
+        } catch (RuntimeException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
