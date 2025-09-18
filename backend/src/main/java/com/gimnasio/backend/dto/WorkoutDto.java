@@ -126,3 +126,4 @@ public class WorkoutDto {
         private String trainerName;
     }
 }
+

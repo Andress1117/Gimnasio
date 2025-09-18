@@ -40,3 +40,4 @@ public interface EquipmentRepository extends JpaRepository<Equipment, Long> {
     @Query("SELECT COUNT(e) FROM Equipment e WHERE e.equipmentType = :type")
     long countByEquipmentType(@Param("type") Equipment.EquipmentType type);
 }
+

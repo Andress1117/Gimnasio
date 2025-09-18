@@ -85,3 +85,4 @@ public class Schedule {
         ACTIVE, INACTIVE, TEMPORARILY_UNAVAILABLE
     }
 }
+

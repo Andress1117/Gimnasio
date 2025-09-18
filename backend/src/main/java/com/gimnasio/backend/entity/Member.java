@@ -99,3 +99,4 @@ public class Member {
         ACTIVE, INACTIVE, SUSPENDED, EXPIRED
     }
 }
+

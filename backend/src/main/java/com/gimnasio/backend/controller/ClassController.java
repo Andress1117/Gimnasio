@@ -49,3 +49,4 @@ public class ClassController {
         return ResponseEntity.noContent().build();
     }
 }
+

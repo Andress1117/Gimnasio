@@ -49,3 +49,4 @@ public class WorkoutController {
         return ResponseEntity.noContent().build();
     }
 }
+

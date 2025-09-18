@@ -40,3 +40,4 @@ public interface WorkoutRepository extends JpaRepository<Workout, Long> {
     @Query("SELECT COUNT(w) FROM Workout w WHERE w.workoutType = :type")
     long countByWorkoutType(@Param("type") Workout.WorkoutType workoutType);
 }
+

@@ -92,3 +92,4 @@ public class Trainer {
         ACTIVE, INACTIVE, ON_LEAVE, TERMINATED
     }
 }
+

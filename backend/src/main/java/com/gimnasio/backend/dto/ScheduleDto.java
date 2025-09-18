@@ -91,3 +91,4 @@ public class ScheduleDto {
         private String trainerName;
     }
 }
+

@@ -88,3 +88,4 @@ public class MemberDto {
         private LocalDate joinDate;
     }
 }
+

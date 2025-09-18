@@ -100,3 +100,4 @@ public class TrainerController {
         return ResponseEntity.ok(trainers);
     }
 }
+

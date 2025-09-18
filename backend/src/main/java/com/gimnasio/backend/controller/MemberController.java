@@ -94,3 +94,4 @@ public class MemberController {
         return ResponseEntity.ok(members);
     }
 }
+

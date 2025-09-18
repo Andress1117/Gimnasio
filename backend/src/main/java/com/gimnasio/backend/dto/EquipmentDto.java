@@ -106,3 +106,4 @@ public class EquipmentDto {
         private String location;
     }
 }
+

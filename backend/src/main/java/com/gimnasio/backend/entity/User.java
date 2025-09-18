@@ -106,3 +106,4 @@ public class User implements UserDetails {
         ADMIN, TRAINER, MEMBER
     }
 }
+

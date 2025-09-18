@@ -38,3 +38,4 @@ public interface TrainerRepository extends JpaRepository<Trainer, Long> {
     @Query("SELECT t FROM Trainer t WHERE t.user.email = :email")
     Optional<Trainer> findByUserEmail(@Param("email") String email);
 }
+

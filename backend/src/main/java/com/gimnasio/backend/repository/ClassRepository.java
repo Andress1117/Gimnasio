@@ -40,3 +40,4 @@ public interface ClassRepository extends JpaRepository<Class, Long> {
     @Query("SELECT COUNT(c) FROM Class c WHERE c.classType = :type")
     long countByClassType(@Param("type") Class.ClassType classType);
 }
+

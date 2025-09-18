@@ -96,3 +96,4 @@ public class Equipment {
         OPERATIONAL, OUT_OF_ORDER, MAINTENANCE, RETIRED
     }
 }
+

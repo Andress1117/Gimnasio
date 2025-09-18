@@ -37,3 +37,4 @@ public interface MembershipRepository extends JpaRepository<Membership, Long> {
     @Query("SELECT COUNT(m) FROM Membership m WHERE m.membershipType = :type")
     long countByMembershipType(@Param("type") String membershipType);
 }
+

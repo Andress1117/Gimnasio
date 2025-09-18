@@ -88,3 +88,4 @@ public class TrainerDto {
         private Integer maxClientsPerDay;
     }
 }
+

@@ -92,3 +92,4 @@ public class PaymentDto {
         private String memberName;
     }
 }
+

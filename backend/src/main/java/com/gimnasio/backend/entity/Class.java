@@ -146,3 +146,4 @@ public class Class {
         ENROLLED, CANCELLED, NO_SHOW, COMPLETED
     }
 }
+

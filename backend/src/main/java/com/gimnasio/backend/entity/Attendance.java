@@ -67,3 +67,4 @@ public class Attendance {
         REGULAR_WORKOUT, PERSONAL_TRAINING, GROUP_CLASS, LOCKER_ACCESS, GUEST_VISIT
     }
 }
+

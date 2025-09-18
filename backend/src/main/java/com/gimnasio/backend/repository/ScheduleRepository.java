@@ -34,3 +34,4 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
     @Query("SELECT COUNT(s) FROM Schedule s WHERE s.status = :status")
     long countByStatus(@Param("status") Schedule.ScheduleStatus status);
 }
+

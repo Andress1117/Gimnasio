@@ -36,3 +36,4 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     @Query("SELECT a FROM Attendance a WHERE a.attendanceType = :type AND a.checkInTime >= :startDate AND a.checkInTime <= :endDate")
     List<Attendance> findAttendanceByTypeInDateRange(@Param("type") Attendance.AttendanceType attendanceType, @Param("startDate") LocalDateTime startDate, @Param("endDate") LocalDateTime endDate);
 }
+
